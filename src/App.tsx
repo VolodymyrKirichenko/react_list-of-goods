@@ -134,9 +134,7 @@ export class App extends Component<{}, State> {
           )}
         </div>
 
-        <ul>
-          <GoodList rowGoods={rowGoods} />
-        </ul>
+        <GoodList rowGoods={rowGoods} />
       </div>
     );
   }

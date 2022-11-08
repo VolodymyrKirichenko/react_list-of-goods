@@ -8,7 +8,7 @@ export const GoodList: FC<Props> = (props) => {
   const { rowGoods } = props;
 
   return (
-    <>
+    <ul>
       {rowGoods.map(good => {
         return (
           <li
@@ -20,6 +20,6 @@ export const GoodList: FC<Props> = (props) => {
           </li>
         );
       })}
-    </>
+    </ul>
   );
 };
