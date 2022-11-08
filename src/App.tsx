@@ -123,16 +123,15 @@ export class App extends Component<{}, State> {
             Reverse
           </button>
 
-          {(sortType || isReversed)
-            && (
-              <button
-                type="button"
-                className="button is-danger is-light"
-                onClick={this.resetHandler}
-              >
-                Reset
-              </button>
-            )}
+          {(sortType || isReversed) && (
+            <button
+              type="button"
+              className="button is-danger is-light"
+              onClick={this.resetHandler}
+            >
+              Reset
+            </button>
+          )}
         </div>
 
         <ul>
