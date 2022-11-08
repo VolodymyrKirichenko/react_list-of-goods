@@ -2,6 +2,7 @@ import { Component } from 'react';
 import 'bulma/css/bulma.css';
 import './App.scss';
 import cn from 'classnames';
+import { GoodList } from './GoodList';
 
 export const goodsFromServer = [
   'Dumplings',
@@ -22,10 +23,10 @@ enum SortType {
   LENGTH,
 }
 
-type ReorderOptions = {
+interface ReorderOptions {
   sortType: SortType,
   isReversed: boolean,
-};
+}
 
 export function getReorderedGoods(
   goods: string[],
@@ -96,10 +97,8 @@ export class App extends Component<{}, State> {
           <button
             type="button"
             className={
-              cn(
-                'button is-info',
-                { 'is-light': sortType !== SortType.ALPHABET },
-              )
+              cn('button is-info',
+                { 'is-light': sortType !== SortType.ALPHABET })
             }
             onClick={this.sortByAlphabet}
           >
@@ -108,12 +107,8 @@ export class App extends Component<{}, State> {
 
           <button
             type="button"
-            className={
-              cn(
-                'button is-success',
-                { 'is-light': sortType !== SortType.LENGTH },
-              )
-            }
+            className={cn('button is-success',
+              { 'is-light': sortType !== SortType.LENGTH })}
             onClick={this.sortByLength}
           >
             Sort by length
@@ -121,19 +116,15 @@ export class App extends Component<{}, State> {
 
           <button
             type="button"
-            className={
-              cn(
-                'button is-warning',
-                { 'is-light': !isReversed },
-              )
-            }
+            className={cn('button is-warning',
+              { 'is-light': !isReversed })}
             onClick={this.reverseHandler}
           >
             Reverse
           </button>
 
           {(sortType || isReversed)
-            ? (
+            && (
               <button
                 type="button"
                 className="button is-danger is-light"
@@ -141,24 +132,11 @@ export class App extends Component<{}, State> {
               >
                 Reset
               </button>
-            )
-            : ''}
+            )}
         </div>
 
         <ul>
-          <ul>
-            {rowGoods.map(good => {
-              return (
-                <li
-                  data-cy="Good"
-                  key={good}
-                  className="box column is-info is-rounded mb-3"
-                >
-                  {good}
-                </li>
-              );
-            })}
-          </ul>
+          <GoodList rowGoods={rowGoods} />
         </ul>
       </div>
     );
